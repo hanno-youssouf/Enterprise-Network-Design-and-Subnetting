@@ -1,5 +1,7 @@
 Network Device Configurations
 
+This document shows the configurations of the network devices.
+
 1. Router R1
 
 The router connects the four departments.
@@ -10,20 +12,26 @@ The router uses subinterfaces for inter-VLAN routing.
 
 enable
 configure terminal
+
 interface gigabitEthernet 0/0
 no shutdown
+
 interface gigabitEthernet 0/0.10
 encapsulation dot1Q 10
 ip address 192.168.10.1 255.255.255.128
+
 interface gigabitEthernet 0/0.20
 encapsulation dot1Q 20
 ip address 192.168.10.129 255.255.255.192
+
 interface gigabitEthernet 0/0.30
 encapsulation dot1Q 30
 ip address 192.168.10.193 255.255.255.224
+
 interface gigabitEthernet 0/0.40
 encapsulation dot1Q 40
 ip address 192.168.10.225 255.255.255.240
+
 end
 write memory
 
@@ -57,9 +65,7 @@ Trunk ports carry traffic from different VLANs.
 
 Central Switch
 
-The following ports are trunk ports:
-
-Switch	Ports
+Switch	Trunk Ports
 SW-CENTRAL	Fa0/1 to Fa0/5
 
 Department Switches
