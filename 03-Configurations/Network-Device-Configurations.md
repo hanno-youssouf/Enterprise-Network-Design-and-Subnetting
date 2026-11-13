@@ -1,10 +1,12 @@
-Device Configurations
+Network Device Configurations
 
 1. Router R1
 
 The router connects the four departments.
 
-Router subinterfaces
+Router Configuration
+
+The router uses subinterfaces for inter-VLAN routing.
 
 enable
 configure terminal
@@ -25,6 +27,16 @@ ip address 192.168.10.225 255.255.255.240
 end
 write memory
 
+Router Verification
+
+Use this command to check the router interfaces:
+
+show ip interface brief
+
+The four subinterfaces must show up/up.
+
+⸻
+
 2. VLAN Configuration
 
 We created four VLANs for the four departments.
@@ -35,28 +47,51 @@ VLAN ID	Department
 30	COMPTABILITE
 40	DIRECTION
 
+Each department uses its own VLAN.
+
+⸻
+
 3. Trunk Configuration
 
-The trunk ports carry traffic from different VLANs.
+Trunk ports carry traffic from different VLANs.
 
-Central switch
+Central Switch
 
-Ports Fa0/1 to Fa0/5 are trunk ports.
+The following ports are trunk ports:
 
-Department switches
+Switch	Ports
+SW-CENTRAL	Fa0/1 to Fa0/5
 
-Port Fa0/1 is the trunk port on each department switch.
+Department Switches
+
+Switch	Trunk Port
+SW-ADMIN	Fa0/1
+SW-IT	Fa0/1
+SW-COMPTA	Fa0/1
+SW-DIRECTION	Fa0/1
+
+The trunk links connect the central switch to the department switches.
+
+⸻
 
 4. PC IP Addressing
 
-PC	IP Address	Subnet Mask	Gateway
+Each PC has an IP address, a subnet mask and a default gateway.
+
+PC	IP Address	Subnet Mask	Default Gateway
 PC0	192.168.10.2	255.255.255.128	192.168.10.1
 PC1	192.168.10.130	255.255.255.192	192.168.10.129
 PC2	192.168.10.194	255.255.255.224	192.168.10.193
 PC3	192.168.10.226	255.255.255.240	192.168.10.225
+
+⸻
 
 5. Network Result
 
 The router connects all four VLANs.
 
 The PCs can communicate with each other using inter-VLAN routing.
+
+The ping tests were successful between the PCs.
+
+The network is working correctly.
